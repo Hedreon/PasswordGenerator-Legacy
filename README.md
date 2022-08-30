@@ -8,7 +8,7 @@ Password Generator is a simple application made in Java with Swing & Maven.
 
 ## What are the differences between the others?
 
-- A small & simple application with a modern interface.
+- A small & simple application with a modern interface
 
 - Lets you input ANY length you want
 
