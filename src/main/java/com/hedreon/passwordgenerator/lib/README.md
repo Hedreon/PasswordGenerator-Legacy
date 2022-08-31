@@ -6,7 +6,13 @@ The Password Generator Library/Backend is a public library that anyone can use i
 
 **(*)** = REQUIRED
 
+#### `generate` Parameters
+
 - `JTextField` inputTextField - Specify the text field for the input (In this case, the length) **(*)**
+
+- `JTextField` outputTextField - Specify the text field for the output (In this case, the password) **(*)**
+
+#### `copy` Parameters
 
 - `JTextField` outputTextField - Specify the text field for the output (In this case, the password) **(*)**
 
@@ -20,7 +26,17 @@ From package, `com.hedreon.passwordgenerator.lib`, import the following:
 
 - `JTextField`
 
-Make a class called `Generator` & make a function called `generate` & `copy`. Inside the `generate` function, get the specified length of the password & get String Builder. For integer is 0; integer is less than the specified password length; increment each time. `Random` is an integer, multiply 4 by X while X is random.
+- `StringSelection`
+
+- `Clipboard`
+
+- `Toolkit`
+
+Make a class called `Generator` & make a function called `generate` & `copy`.
+
+#### `generate`
+
+Get the specified length of the password & get String Builder. For integer is 0; integer is less than the specified password length; increment each time. `Random` is an integer, multiply 4 by X while X is random.
 
 Switch cases to `Random`:
 
@@ -32,7 +48,11 @@ Switch cases to `Random`:
 
 - Case #3: `Random` is an integer, multiply the length of the `SYMBOLS` constant by X while X is random. After that, append the password to the chosen symbol.
 
-After all that is done, set the text of the specified output text field to the final result in [Strings.](https://en.wikipedia.org/wiki/String_(computer_science))
+After all that is done, set the text of the specified output text field to the generated result in [Strings.](https://en.wikipedia.org/wiki/String_(computer_science))
+
+#### `copy`
+
+Get the text of the specified output text field with the generated result, get the users clipboard, and get the selection of the password (In this case, all of the password). After getting all those, write/copy the generated result into the users clipboard.
 
 ### [`GeneratorConstants.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/GeneratorConstants.java)
 
@@ -44,7 +64,7 @@ From package, `com.hedreon.passwordgenerator.lib`, make a class called `Generato
 
 - `generate`
 
-- `copy` *(coming soon)*
+- `copy`
 
 [`GeneratorConstants.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/GeneratorConstants.java) **¬**
 
