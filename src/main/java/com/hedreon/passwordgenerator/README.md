@@ -22,4 +22,4 @@ A: The layout handles these, because, after the creation of the UI, it then proc
 
 - [`Init.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/Init.java) is the *main* class as it creates the [components](https://github.com/Hedreon/PasswordGenerator/tree/main/src/main/java/com/hedreon/passwordgenerator#what-does-it-do) and the UI.
 
-- [`Main.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/Main.java) is the class that loads [`Init.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/Init.java), handles the launch process & sets up the [look and feel](https://en.wikipedia.org/wiki/Look_and_feel) before UI creation.
+- [`Main.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/Main.java) is the class that loads [`Init.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/Init.java), handles the launch process & sets up theme synchronization before UI creation.
