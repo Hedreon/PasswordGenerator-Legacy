@@ -1,9 +1,11 @@
 # Password Generator Frontend
+
 This is the main code for the frontend, the UI/UX.
 
 ## What does it do?
 
 Behind the scenes, it's creating multiple components:
+
 - A `JFrame`
 - 2 `JLabel`'s
 - 2 `JTextField`'s
