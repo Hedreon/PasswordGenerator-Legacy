@@ -52,7 +52,7 @@ After all that is done, set the text of the specified output text field to the g
 
 #### `copy`
 
-Get the text of the specified output text field with the generated result, get the users clipboard, and get the selection of the password (In this case, all of the password). After getting all those, write/copy the generated result into the users clipboard.
+Get the text of the specified output text field with the generated result, get the users' clipboard, and get the selection of the password (In this case, all the password). After getting all those, write/copy the generated result into the users' clipboard.
 
 ### [`GeneratorConstants.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/GeneratorConstants.java)
 
