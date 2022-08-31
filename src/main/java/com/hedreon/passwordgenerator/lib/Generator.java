@@ -6,6 +6,10 @@ import static com.hedreon.passwordgenerator.lib.GeneratorConstants.SYMBOLS;
 
 import javax.swing.JTextField;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Clipboard;
+import java.awt.Toolkit;
+
 public class Generator {
     public static void generate(JTextField inputTextField, JTextField outputTextField) {
         int PasswordLength = Integer.parseInt(inputTextField.getText());
@@ -36,5 +40,13 @@ public class Generator {
         }
 
         outputTextField.setText(Password.toString());
+    }
+
+    public static void copy(JTextField outputTextField) {
+        String password = outputTextField.getText();
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection stringSelection = new StringSelection(password);
+
+        clipboard.setContents(stringSelection, stringSelection);
     }
 }
