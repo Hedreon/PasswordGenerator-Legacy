@@ -16,7 +16,7 @@ All of these components are customised to the extent of bringing modernization &
 ### Q&A
 Q: **Why is there no locations & positions referenced anywhere *during* the UI creation process?**
 
-A: The layout handles these, because, after the creation of the UI, it then proceeds to setup the layout, which moves all the components into their organized places.
+A: The layout handles these, because, after the creation of the UI, it then proceeds to set up the layout, which moves all the components into their organized places.
 
 ## Which ones which?
 
