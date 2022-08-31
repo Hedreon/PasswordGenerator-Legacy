@@ -100,7 +100,7 @@ public class Init extends JFrame {
         generateButton.setText("Generate");
         generateButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         generateButton.addActionListener(e -> {
-            if (inputTextField.getText().isBlank() || inputTextField.getText().equals("")) {
+            if (inputTextField.getText().isBlank() || inputTextField.getText().equals("") || inputTextField.getText().equals("0")) {
                 JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
             } else {
                 Generator.generate(inputTextField, outputTextField);
