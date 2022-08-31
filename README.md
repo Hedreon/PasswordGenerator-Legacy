@@ -6,7 +6,7 @@
 
 ## What?
 
-Password Generator is a simple, small in size, application made in Java with Swing & Maven.
+Password Generator is a simple, small, application made in Java with Swing & Maven.
 
 ## Differences?
 
