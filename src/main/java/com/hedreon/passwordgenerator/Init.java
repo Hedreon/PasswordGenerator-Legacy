@@ -14,11 +14,8 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.Cursor;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -94,11 +91,7 @@ public class Init extends JFrame {
         copyButton.setText("Copy Password");
         copyButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         copyButton.addActionListener(e -> {
-            String password = outputTextField.getText();
-            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-            StringSelection stringSelection = new StringSelection(password);
-
-            clipboard.setContents(stringSelection, stringSelection);
+            Generator.copy(outputTextField);
         });
         this.add(copyButton);
 
