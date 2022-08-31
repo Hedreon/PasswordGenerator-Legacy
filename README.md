@@ -1,15 +1,23 @@
 # Password Generator
 
-<p align="center"><img width="128" height="128" src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/icon.png"></p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/app.png">
+</p>
 
-## What is it?
+## What?
 
-Password Generator is a simple application made in Java with Swing & Maven.
+Password Generator is a simple, small in size, application made in Java with Swing & Maven.
 
-## What are the differences between the others?
+## Differences?
 
-- A small & simple application with a modern interface
+- A small in size & simple application with a modern interface
 
-- Lets you input ANY length you want
+- Lets you input *any* length you want
 
-- Uses my own [Password Generator Library](https://github.com/Hedreon/PasswordGenerator/tree/main/src/main/java/com/hedreon/passwordgenerator/lib) (that anyone can use in their projects)
+- Uses a [library,](https://github.com/Hedreon/PasswordGenerator/tree/main/src/main/java/com/hedreon/passwordgenerator/lib) it's *own* public library.
+
+- The ability to copy the password in one click
+
+- It's fast
+
+- Switches to the selected theme of the OS *(coming soon)*
