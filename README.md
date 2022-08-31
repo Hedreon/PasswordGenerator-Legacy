@@ -20,4 +20,4 @@ Password Generator is a simple, small, application made in Java with Swing & Mav
 
 - It's fast
 
-- Switches to the selected theme of the OS *(coming soon)*
+- It has theme synchronization, a feature that synchronizes with your operating system's theme.
