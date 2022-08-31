@@ -90,9 +90,7 @@ public class Init extends JFrame {
         copyButton.setSize(new Dimension(91, 25));
         copyButton.setText("Copy Password");
         copyButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        copyButton.addActionListener(e -> {
-            Generator.copy(outputTextField);
-        });
+        copyButton.addActionListener(e -> Generator.copy(outputTextField));
         this.add(copyButton);
 
         // GenerateButton
