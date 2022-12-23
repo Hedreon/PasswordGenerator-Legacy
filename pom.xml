@@ -4,7 +4,7 @@
     <groupId>com.hedreon</groupId>
     <artifactId>PasswordGenerator</artifactId>
     <packaging>jar</packaging>
-    <version>1.1</version>
+    <version>1.2</version>
     <name>Password Generator</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
