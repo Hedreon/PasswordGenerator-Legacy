@@ -1,17 +1,15 @@
 package com.hedreon.passwordgenerator.lib;
 
-import static com.hedreon.passwordgenerator.lib.GeneratorConstants.LOWER_CASE;
-import static com.hedreon.passwordgenerator.lib.GeneratorConstants.UPPER_CASE;
-import static com.hedreon.passwordgenerator.lib.GeneratorConstants.SYMBOLS;
+import static com.hedreon.passwordgenerator.lib.GeneratorConstants.*;
 
 import javax.swing.JTextField;
-
+import javax.swing.JPasswordField;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
 import java.awt.Toolkit;
 
 public class Generator {
-    public static void generate(JTextField inputTextField, JTextField outputTextField) {
+    public static void generate(JTextField inputTextField, JPasswordField outputPasswordField) {
         int PasswordLength = Integer.parseInt(inputTextField.getText());
 
         StringBuilder Password = new StringBuilder();
@@ -39,13 +37,15 @@ public class Generator {
             }
         }
 
-        outputTextField.setText(Password.toString());
+        outputPasswordField.setText(Password.toString());
     }
 
-    public static void copy(JTextField outputTextField) {
-        String password = outputTextField.getText();
+    public static void copy(JPasswordField outputPasswordField) {
+        char[] password = outputPasswordField.getPassword();
+        String passwordString = new String(password);
+
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection stringSelection = new StringSelection(password);
+        StringSelection stringSelection = new StringSelection(passwordString);
 
         clipboard.setContents(stringSelection, stringSelection);
     }

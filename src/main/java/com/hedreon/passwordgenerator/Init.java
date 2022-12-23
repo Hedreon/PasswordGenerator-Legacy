@@ -6,19 +6,18 @@ import com.hedreon.passwordgenerator.lib.Generator;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.net.URL;
 
 public class Init extends JFrame {
@@ -77,11 +76,11 @@ public class Init extends JFrame {
         outputTitle.setFont(new Font("Segoe UI", Font.BOLD, 28));
         this.add(outputTitle);
 
-        // OutputTextField
-        JTextField outputTextField = new JTextField();
-        outputTextField.setName("OutputTextField");
-        outputTextField.setEditable(false);
-        this.add(outputTextField);
+        // OutputPasswordField
+        JPasswordField outputPasswordField = new JPasswordField();
+        outputPasswordField.setName("OutputPasswordField");
+        outputPasswordField.setEditable(false);
+        this.add(outputPasswordField);
 
         // CopyButton
         JButton copyButton = new JButton();
@@ -90,7 +89,7 @@ public class Init extends JFrame {
         copyButton.setSize(new Dimension(91, 25));
         copyButton.setText("Copy Password");
         copyButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        copyButton.addActionListener(e -> Generator.copy(outputTextField));
+        copyButton.addActionListener(e -> Generator.copy(outputPasswordField));
         this.add(copyButton);
 
         // GenerateButton
@@ -103,9 +102,9 @@ public class Init extends JFrame {
             if (inputTextField.getText().isBlank() || inputTextField.getText().equals("") || inputTextField.getText().equals("0")) {
                 JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
             } else {
-                Generator.generate(inputTextField, outputTextField);
+                Generator.generate(inputTextField, outputPasswordField);
 
-                if (outputTextField.getText().length() > 0) {
+                if (outputPasswordField.getPassword().length > 0) {
                     copyButton.setEnabled(true);
                 }
             }
@@ -116,8 +115,8 @@ public class Init extends JFrame {
         final GroupLayout layout = new GroupLayout(this.getContentPane());
         this.getContentPane().setLayout(layout);
 
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(inputTitle, GroupLayout.Alignment.TRAILING, -1, -1, 32767).addComponent(outputTitle, GroupLayout.Alignment.TRAILING, -1, 400, 32767).addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(generateButton, GroupLayout.Alignment.TRAILING, -1, -1, 32767).addComponent(outputTextField, GroupLayout.Alignment.TRAILING).addComponent(inputTextField).addComponent(copyButton, GroupLayout.Alignment.TRAILING, -1, -1, 32767)).addContainerGap()));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addComponent(inputTitle, -2, 50, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(inputTextField, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(outputTitle, -2, 50, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(outputTextField, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(generateButton, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(copyButton, -2, -1, -2).addContainerGap()));
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(inputTitle, GroupLayout.Alignment.TRAILING, -1, -1, 32767).addComponent(outputTitle, GroupLayout.Alignment.TRAILING, -1, 400, 32767).addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(generateButton, GroupLayout.Alignment.TRAILING, -1, -1, 32767).addComponent(outputPasswordField, GroupLayout.Alignment.TRAILING).addComponent(inputTextField).addComponent(copyButton, GroupLayout.Alignment.TRAILING, -1, -1, 32767)).addContainerGap()));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addComponent(inputTitle, -2, 50, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(inputTextField, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(outputTitle, -2, 50, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(outputPasswordField, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(generateButton, -2, -1, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(copyButton, -2, -1, -2).addContainerGap()));
 
         this.pack();
     }
