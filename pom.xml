@@ -33,7 +33,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.4.2</version>
                 <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
+                    <appendAssemblyId>true</appendAssemblyId>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -50,6 +50,30 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                    <execution>
+                        <id>build-exe</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <jar>target/PasswordGenerator-${project.version}-jar-with-dependencies.jar</jar>
+                            <outfile>target/bin/PasswordGenerator-v${project.version}.exe</outfile>
+                            <mainClass>com.hedreon.passwordgenerator.Main</mainClass>
+                            <jre>
+                                <path>C:\Program Files\Eclipse Adoptium\jdk-19.0.1.10-hotspot</path>
+                                <requires64Bit>true</requires64Bit>
+                            </jre>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
