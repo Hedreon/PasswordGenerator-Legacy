@@ -71,8 +71,8 @@
                             <mainClass>com.hedreon.passwordgenerator.Main</mainClass>
                             <icon>src/main/resources/icon.ico</icon>
                             <jre>
-                                <path>C:\Program Files\Eclipse Adoptium\jdk-19.0.1.10-hotspot</path>
-                                <requires64Bit>true</requires64Bit>
+                                <path>C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot</path>
+                                <requires64Bit>false</requires64Bit>
                             </jre>
                         </configuration>
                     </execution>
