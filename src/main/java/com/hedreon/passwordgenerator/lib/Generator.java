@@ -1,47 +1,62 @@
 package com.hedreon.passwordgenerator.lib;
 
-import static com.hedreon.passwordgenerator.lib.GeneratorConstants.*;
-
-import javax.swing.JTextField;
+// Imports
+import static com.hedreon.passwordgenerator.lib.GeneratorSettings.*;
 import javax.swing.JPasswordField;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
 import java.awt.Toolkit;
 
 public class Generator {
-    public static void generate(JTextField inputTextField, JPasswordField outputPasswordField) {
-        int PasswordLength = Integer.parseInt(inputTextField.getText());
+    public static void generatePassword(JPasswordField output) {
+        StringBuilder password = new StringBuilder();
 
-        StringBuilder Password = new StringBuilder();
-
-        for(int i = 0; i < PasswordLength; i++) {
-            int Random = (int)(4 * Math.random());
+        for(int i = 0; i < PASSWORD_LENGTH; i++) {
+            int Random = (int) (4 * Math.random());
 
             switch (Random) {
-                case 0 -> Password.append((int) (10 * Math.random()));
+                case 0 -> {
+                    if (INCLUDE_NUMBERS) {
+                        password.append((int) (10 * Math.random()));
+                    } else {
+                        return;
+                    }
+                }
 
                 case 1 -> {
-                    Random = (int) (LOWER_CASE.length() * Math.random());
-                    Password.append(LOWER_CASE.charAt(Random));
+                    if (INCLUDE_LOWERCASE_LETTERS) {
+                        Random = (int) (LOWER_CASE.length() * Math.random());
+                        password.append(LOWER_CASE.charAt(Random));
+                    } else {
+                        return;
+                    }
                 }
 
                 case 2 -> {
-                    Random = (int) (UPPER_CASE.length() * Math.random());
-                    Password.append(UPPER_CASE.charAt(Random));
+                    if (INCLUDE_UPPERCASE_LETTERS) {
+                        Random = (int) (UPPER_CASE.length() * Math.random());
+                        password.append(UPPER_CASE.charAt(Random));
+                    } else {
+                        return;
+                    }
                 }
 
                 case 3 -> {
-                    Random = (int) (SYMBOLS.length() * Math.random());
-                    Password.append(SYMBOLS.charAt(Random));
+                    if (INCLUDE_SYMBOLS) {
+                        Random = (int) (SYMBOLS.length() * Math.random());
+                        password.append(SYMBOLS.charAt(Random));
+                    } else {
+                        return;
+                    }
                 }
             }
         }
 
-        outputPasswordField.setText(Password.toString());
+        output.setText(password.toString());
     }
 
-    public static void copy(JPasswordField outputPasswordField) {
-        char[] password = outputPasswordField.getPassword();
+    public static void copyPassword(JPasswordField output) {
+        char[] password = output.getPassword();
         String passwordString = new String(password);
 
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();

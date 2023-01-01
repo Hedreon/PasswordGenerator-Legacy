@@ -68,8 +68,7 @@
                             <headerType>gui</headerType>
                             <jar>target/PasswordGenerator-${project.version}-jar-with-dependencies.jar</jar>
                             <outfile>target/bin/PasswordGenerator-v${project.version}.exe</outfile>
-                            <mainClass>com.hedreon.passwordgenerator.Main</mainClass>
-                            <icon>src/main/resources/icon.ico</icon>
+                            <icon>src/main/resources/icons/icon.ico</icon>
                             <jre>
                                 <path>C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot</path>
                                 <requires64Bit>false</requires64Bit>
