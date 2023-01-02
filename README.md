@@ -1,7 +1,8 @@
 # Password Generator
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/app.png">
+  <img src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/legacy/preview/app.png">
+  <h6 align="center">This is an old screenshot. Current versions do not reflect this screenshot.</h6>
 </p>
 
 ## What?
