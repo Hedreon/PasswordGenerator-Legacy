@@ -6,52 +6,56 @@ import javax.swing.JPasswordField;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
 import java.awt.Toolkit;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Generator {
     public static void generatePassword(JPasswordField output) {
-        StringBuilder password = new StringBuilder();
+        // Initialize a list of characters to choose from
+        List<Character> availableChars = new ArrayList<>();
 
-        for(int i = 0; i < PASSWORD_LENGTH; i++) {
-            int Random = (int) (4 * Math.random());
-
-            switch (Random) {
-                case 0 -> {
-                    if (INCLUDE_NUMBERS) {
-                        password.append((int) (10 * Math.random()));
-                    } else {
-                        return;
-                    }
-                }
-
-                case 1 -> {
-                    if (INCLUDE_LOWERCASE_LETTERS) {
-                        Random = (int) (LOWER_CASE.length() * Math.random());
-                        password.append(LOWER_CASE.charAt(Random));
-                    } else {
-                        return;
-                    }
-                }
-
-                case 2 -> {
-                    if (INCLUDE_UPPERCASE_LETTERS) {
-                        Random = (int) (UPPER_CASE.length() * Math.random());
-                        password.append(UPPER_CASE.charAt(Random));
-                    } else {
-                        return;
-                    }
-                }
-
-                case 3 -> {
-                    if (INCLUDE_SYMBOLS) {
-                        Random = (int) (SYMBOLS.length() * Math.random());
-                        password.append(SYMBOLS.charAt(Random));
-                    } else {
-                        return;
-                    }
-                }
+        // Add numbers to the list if INCLUDE_NUMBERS is true
+        if (INCLUDE_NUMBERS) {
+            for (char c = '0'; c <= '9'; c++) {
+                availableChars.add(c);
             }
         }
 
+        // Add symbols to the list if INCLUDE_SYMBOLS is true
+        if (INCLUDE_SYMBOLS) {
+            for (char c : SYMBOLS.toCharArray()) {
+                availableChars.add(c);
+            }
+        }
+
+        // Add lowercase letters to the list if INCLUDE_LOWERCASE_LETTERS is true
+        if (INCLUDE_LOWERCASE_LETTERS) {
+            for (char c : LOWER_CASE.toCharArray()) {
+                availableChars.add(c);
+            }
+        }
+
+        // Add uppercase letters to the list if INCLUDE_UPPERCASE_LETTERS is true
+        if (INCLUDE_UPPERCASE_LETTERS) {
+            for (char c : UPPER_CASE.toCharArray()) {
+                availableChars.add(c);
+            }
+        }
+
+        // Initialize a SecureRandom instance for generating random numbers
+        SecureRandom random = new SecureRandom();
+
+        // Initialize a StringBuilder for building the password
+        StringBuilder password = new StringBuilder();
+
+        // Select a random character from the list and append it to the password the specified number of times
+        for (int i = 0; i < PASSWORD_LENGTH; i++) {
+            char c = availableChars.get(random.nextInt(availableChars.size()));
+            password.append(c);
+        }
+
+        // Set the password in the output JPasswordField
         output.setText(password.toString());
     }
 
