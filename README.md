@@ -1,8 +1,7 @@
 # Password Generator
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/legacy/preview/app.png">
-  <h6 align="center">This is an old screenshot. Current versions do not reflect this screenshot.</h6>
+    <img src="https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/legacy/preview/app.png">
 </p>
 
 ## What?
@@ -15,8 +14,14 @@ Password Generator is a simple application made in Java with Swing and Maven.
 
 - Lets you input *any* length you want
 
-- Uses a [library,](https://github.com/Hedreon/PasswordGenerator/tree/main/src/main/java/com/hedreon/passwordgenerator/lib) its *own* public library.
+- Lets you customise the password
+  - Include Symbols
+  - Include Numbers
+  - Include Lowercase Letters
+  - Include Uppercase Letters
+
+- Uses its *own* [library](https://github.com/Hedreon/PasswordGenerator/tree/main/src/main/java/com/hedreon/passwordgenerator/lib)
 
 - The ability to copy the password in one click
 
-- It's fast
+- It's fast & completely secure
