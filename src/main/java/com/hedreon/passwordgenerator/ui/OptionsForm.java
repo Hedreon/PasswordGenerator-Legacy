@@ -2,8 +2,19 @@ package com.hedreon.passwordgenerator.ui;
 
 // Imports
 import com.hedreon.passwordgenerator.lib.GeneratorSettings;
-
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle;
+import javax.swing.JTextField;
+import javax.swing.Action;
+import javax.swing.KeyStroke;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JCheckBox;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.TextAction;
