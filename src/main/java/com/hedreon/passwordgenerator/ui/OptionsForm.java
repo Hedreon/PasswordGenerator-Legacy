@@ -158,7 +158,7 @@ public class OptionsForm extends JFrame {
                 }
             }
         });
-        lengthField.setText(formProperties.getProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.PASSWORD_LENGTH)));
+        lengthField.setText(formProperties.getProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH)));
         this.add(lengthField);
 
         // SymbolCheck
@@ -166,7 +166,7 @@ public class OptionsForm extends JFrame {
         symbolCheck.setName("SymbolCheck");
         symbolCheck.setText("Include Symbols");
         symbolCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        symbolCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.INCLUDE_SYMBOLS))));
+        symbolCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.Setting.INCLUDE_SYMBOLS))));
         this.add(symbolCheck);
 
         // NumberCheck
@@ -174,7 +174,7 @@ public class OptionsForm extends JFrame {
         numberCheck.setName("NumberCheck");
         numberCheck.setText("Include Numbers");
         numberCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        numberCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.INCLUDE_NUMBERS))));
+        numberCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_NUMBERS))));
         this.add(numberCheck);
 
         // LowercaseCheck
@@ -182,7 +182,7 @@ public class OptionsForm extends JFrame {
         lowercaseCheck.setName("LowercaseCheck");
         lowercaseCheck.setText("lowercase");
         lowercaseCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lowercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.INCLUDE_LOWERCASE_LETTERS))));
+        lowercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS))));
         this.add(lowercaseCheck);
 
         // UppercaseCheck
@@ -190,7 +190,7 @@ public class OptionsForm extends JFrame {
         uppercaseCheck.setName("UppercaseCheck");
         uppercaseCheck.setText("UPPERCASE");
         uppercaseCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        uppercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.INCLUDE_UPPERCASE_LETTERS))));
+        uppercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS))));
         this.add(uppercaseCheck);
 
         // SaveButton
@@ -199,17 +199,17 @@ public class OptionsForm extends JFrame {
         saveButton.setText("Save Changes");
         saveButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         saveButton.addActionListener(e -> {
-            GeneratorSettings.INCLUDE_SYMBOLS = symbolCheck.isSelected();
-            GeneratorSettings.INCLUDE_NUMBERS = numberCheck.isSelected();
-            GeneratorSettings.INCLUDE_LOWERCASE_LETTERS = lowercaseCheck.isSelected();
-            GeneratorSettings.INCLUDE_UPPERCASE_LETTERS = uppercaseCheck.isSelected();
-            GeneratorSettings.PASSWORD_LENGTH = Integer.parseInt(lengthField.getText());
+            GeneratorSettings.Setting.INCLUDE_SYMBOLS = symbolCheck.isSelected();
+            GeneratorSettings.Setting.INCLUDE_NUMBERS = numberCheck.isSelected();
+            GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS = lowercaseCheck.isSelected();
+            GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS = uppercaseCheck.isSelected();
+            GeneratorSettings.Setting.PASSWORD_LENGTH = Integer.parseInt(lengthField.getText());
 
-            formProperties.setProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.INCLUDE_SYMBOLS));
-            formProperties.setProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.INCLUDE_NUMBERS));
-            formProperties.setProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.INCLUDE_LOWERCASE_LETTERS));
-            formProperties.setProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.INCLUDE_UPPERCASE_LETTERS));
-            formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.PASSWORD_LENGTH));
+            formProperties.setProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.Setting.INCLUDE_SYMBOLS));
+            formProperties.setProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_NUMBERS));
+            formProperties.setProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS));
+            formProperties.setProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS));
+            formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH));
 
             JOptionPane.showMessageDialog(rootPane, "Options saved!", "Password Generator", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

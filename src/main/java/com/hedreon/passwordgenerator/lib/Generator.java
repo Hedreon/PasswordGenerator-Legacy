@@ -1,7 +1,6 @@
 package com.hedreon.passwordgenerator.lib;
 
 // Imports
-import static com.hedreon.passwordgenerator.lib.GeneratorSettings.*;
 import javax.swing.JPasswordField;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
@@ -16,29 +15,29 @@ public class Generator {
         List<Character> availableChars = new ArrayList<>();
 
         // Add numbers to the list if INCLUDE_NUMBERS is true
-        if (INCLUDE_NUMBERS) {
+        if (GeneratorSettings.Setting.INCLUDE_NUMBERS) {
             for (char c = '0'; c <= '9'; c++) {
                 availableChars.add(c);
             }
         }
 
         // Add symbols to the list if INCLUDE_SYMBOLS is true
-        if (INCLUDE_SYMBOLS) {
-            for (char c : SYMBOLS.toCharArray()) {
+        if (GeneratorSettings.Setting.INCLUDE_SYMBOLS) {
+            for (char c : GeneratorSettings.Constant.SYMBOLS.toCharArray()) {
                 availableChars.add(c);
             }
         }
 
         // Add lowercase letters to the list if INCLUDE_LOWERCASE_LETTERS is true
-        if (INCLUDE_LOWERCASE_LETTERS) {
-            for (char c : LOWER_CASE.toCharArray()) {
+        if (GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS) {
+            for (char c : GeneratorSettings.Constant.LOWER_CASE.toCharArray()) {
                 availableChars.add(c);
             }
         }
 
         // Add uppercase letters to the list if INCLUDE_UPPERCASE_LETTERS is true
-        if (INCLUDE_UPPERCASE_LETTERS) {
-            for (char c : UPPER_CASE.toCharArray()) {
+        if (GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS) {
+            for (char c : GeneratorSettings.Constant.UPPER_CASE.toCharArray()) {
                 availableChars.add(c);
             }
         }
@@ -50,7 +49,7 @@ public class Generator {
         StringBuilder password = new StringBuilder();
 
         // Select a random character from the list and append it to the password the specified number of times
-        for (int i = 0; i < PASSWORD_LENGTH; i++) {
+        for (int i = 0; i < GeneratorSettings.Setting.PASSWORD_LENGTH; i++) {
             char c = availableChars.get(random.nextInt(availableChars.size()));
             password.append(c);
         }
