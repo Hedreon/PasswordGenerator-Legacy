@@ -2,6 +2,7 @@ package com.hedreon.passwordgenerator.ui;
 
 // Imports
 import com.hedreon.passwordgenerator.lib.GeneratorSettings;
+import com.hedreon.passwordgenerator.lib.ImageLoader;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
@@ -18,7 +19,7 @@ import javax.swing.JCheckBox;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.TextAction;
-//import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -41,7 +42,7 @@ public class OptionsForm extends JFrame {
     // Loader
     public OptionsForm(Properties properties) {
         lengthField = new JTextField();
-        formProperties = properties; // Assign the Properties object passed as an argument to the formProperties field
+        formProperties = properties;
         LoadForm();
     }
 
@@ -57,16 +58,13 @@ public class OptionsForm extends JFrame {
             JTextComponent component = getFocusedComponent();
             String clipboardText = getClipboardText();
 
-            // Use the getOnlyNumbers() method to get only the numeric characters from the clipboard text
             String onlyNumbers = getOnlyNumbers(clipboardText);
 
-            // If there are no numeric characters in the clipboard text, display an error message or take some other appropriate action
             if (onlyNumbers.length() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers!", "Password Generator", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Set the text of the text field to the numeric characters from the clipboard text
             component.setText(onlyNumbers);
         }
     }
@@ -101,11 +99,11 @@ public class OptionsForm extends JFrame {
 
     private void LoadForm() {
         // Getting Icon
-        //ImageIcon icon = new ImageIcon(ImageLoader.loadImage("icons/icon.png"));
+        ImageIcon icon = new ImageIcon(ImageLoader.loadImage("icons/options.png"));
 
         // OptionsForm
         this.setName("OptionsForm");
-        //this.setIconImage(icon.getImage());
+        this.setIconImage(icon.getImage());
         this.setTitle("Generator Options");
         this.setSize(new Dimension(278, 200));
         this.setPreferredSize(new Dimension(278, 200));
@@ -222,7 +220,6 @@ public class OptionsForm extends JFrame {
             formProperties.setProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS));
             formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH));
 
-            JOptionPane.showMessageDialog(rootPane, "Options saved!", "Password Generator", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         });
         this.add(saveButton);
@@ -308,7 +305,6 @@ public class OptionsForm extends JFrame {
             return;
         }
 
-        // Parse the numeric characters as an integer and set it as the text of the text field
         int number = Integer.parseInt(onlyNumbers);
         component.setText(String.valueOf(number));
     }
