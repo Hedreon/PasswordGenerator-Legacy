@@ -1,5 +1,6 @@
-package com.hedreon.passwordgenerator.ui;
+package com.hedreon.passwordgenerator.lib;
 
+// Imports
 import java.awt.Toolkit;
 import java.awt.Image;
 import java.net.URL;

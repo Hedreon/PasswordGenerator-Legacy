@@ -1,7 +1,9 @@
 package com.hedreon.passwordgenerator.ui;
 
 // Imports
+import static com.hedreon.passwordgenerator.ui.OptionsForm.lengthField;
 import com.hedreon.passwordgenerator.lib.Generator;
+import com.hedreon.passwordgenerator.lib.ImageLoader;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,8 +17,6 @@ import javax.swing.LayoutStyle;
 import java.util.Properties;
 import java.awt.Dimension;
 import java.awt.Font;
-
-import static com.hedreon.passwordgenerator.ui.OptionsForm.lengthField;
 
 public class MainForm extends JFrame {
      private Properties formProperties;
