@@ -6,6 +6,11 @@
     <packaging>jar</packaging>
     <version>1.4.1</version>
     <name>Password Generator</name>
+    <inceptionYear>2022-Present</inceptionYear>
+    <organization>
+        <name>Hedreon</name>
+        <url>https://github.com/Hedreon</url>
+    </organization>
     <description>A simple password generator</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
