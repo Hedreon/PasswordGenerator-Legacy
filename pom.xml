@@ -71,8 +71,9 @@
                             <goal>launch4j</goal>
                         </goals>
                         <configuration>
+                            <dontWrapJar>true</dontWrapJar>
                             <headerType>gui</headerType>
-                            <jar>target/PasswordGenerator-${project.version}-jar-with-dependencies.jar</jar>
+                            <jar>../PasswordGenerator-${project.version}-jar-with-dependencies.jar</jar>
                             <outfile>target/bin/PasswordGenerator-v${project.version}.exe</outfile>
                             <icon>src/main/resources/icons/icon.ico</icon>
                             <jre>
