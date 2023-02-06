@@ -20,6 +20,10 @@ All of these components are customised to the extent of bringing modernization a
 
 It's the same with MainForm.java, but instead of a `JPasswordField`, it has a `JTextField`, with more additional components to it:
 
+- 4 `JCheckBox`-es
+
+- 2 `Action`'s
+
 - A `JFrame`
 
 - A `JLabel`
@@ -32,13 +36,10 @@ It's the same with MainForm.java, but instead of a `JPasswordField`, it has a `J
 
 - A `JButton`
 
-- 2 `Action`'s
-
-- 4 `JCheckBox`-es
-
 Once again, all of these components are customised to the extent of bringing modernization and consistency to the design.
 
 ## Question
+
 **Why are there no locations and positions referenced anywhere *during* the UI creation process?**
 
 The layout handles these, because, after the creation of the UI, it then proceeds to set up the layout, which moves all the components into their organized places.

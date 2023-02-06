@@ -4,38 +4,17 @@ The Password Generator Library is a library that generates a password from the s
 
 ## Code
 
-### Method Parameters
+### Method Arguments
 
 **(*)** = REQUIRED
 
-#### `generatePassword()` Method Parameters
+#### `generatePassword()` Method Arguments
 
-- `JPasswordField` output - Specifies the password field for the output. **(*)**
+- `JPasswordField output` - Specifies the password field for the output. **(*)**
 
-#### `copyPassword()` Method Parameters
+#### `copyPassword()` Method Arguments
 
-- `JPasswordField` output - Specifies the password field for the output. **(*)**
-
-#### `loadImage()` Method Parameters
-
-- `String` image - Specifies the path of the image in string.
-
-### [`ImageLoader.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/ImageLoader.java)
-
-From package, `com.hedreon.passwordgenerator.lib`, import the following:
-
-- `Toolkit`
-- `Image`
-- `URL`
-
-Make a class called `ImageLoader` and make a method called `loadImage()`.
-
-#### `loadImage()`
-
-The `loadImage()` method takes a string parameter representing the file name of the image to be loaded.
-It first attempts to retrieve the URL of the image file by calling the `getResource()` method on the `ClassLoader` of the `ImageLoader` class and passing it the file name.
-If the URL is null, it means that the image file was not found, so the method throws an `IllegalArgumentException`.
-If the URL is not null, the method calls `createImage()` on the default Toolkit object, passing it the URL, to create and return an Image object for the image file.
+- `JPasswordField output` - Specifies the password field for the output. **(*)**
 
 ### [`Generator.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/Generator.java)
 
@@ -82,14 +61,12 @@ Overall, this method is used to copy the password stored in the output `JPasswor
 ### [`GeneratorSettings.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/GeneratorSettings.java)
 
 From package, `com.hedreon.passwordgenerator.lib`, make a class called `GeneratorSettings`. Inside the `GeneratorSettings` class, make two more classes called `Setting` and `Constant`.
+
 Inside the `Setting` class, make booleans on whether to `INCLUDE_NUMBERS`, `INCLUDE_SYMBOLS`, `INCLUDE_LOWERCASE_LETTERS` or to `INCLUDE_UPPERCASE_LETTERS` and finally, make an integer for the `PASSWORD_LENGTH`.
+
 Inside the `Constant` class, make strings on the `LOWER_CASE` and `UPPER_CASE` alphabet, and make a string on all the allowed `SYMBOLS`.
 
 ## Method Tree
-
-- [`ImageLoader.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/ImageLoader.java)
-
-  - `loadImage()`
 
 - [`Generator.java`](https://github.com/Hedreon/PasswordGenerator/blob/main/src/main/java/com/hedreon/passwordgenerator/lib/Generator.java)
 
@@ -112,6 +89,7 @@ Inside the `Constant` class, make strings on the `LOWER_CASE` and `UPPER_CASE` a
     - `PASSWORD_LENGTH`
 
   - `Constant`
+  
     - `LOWER_CASE`
     
     - `UPPER_CASE`

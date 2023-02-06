@@ -1,9 +1,10 @@
 package com.hedreon.passwordgenerator.ui;
 
 // Imports
-import static com.hedreon.passwordgenerator.ui.OptionsForm.lengthField;
 import com.hedreon.passwordgenerator.lib.Generator;
-import com.hedreon.passwordgenerator.lib.ImageLoader;
+import com.hedreon.passwordgenerator.lib.GeneratorSettings;
+import com.hedreon.passwordgenerator.util.FormUtils;
+import com.hedreon.passwordgenerator.util.IconUtils;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,6 +21,7 @@ import java.awt.Font;
 
 public class MainForm extends JFrame {
      private Properties formProperties;
+     public static JButton generateButton = new JButton();
 
      // Loader
      public MainForm() {
@@ -28,7 +30,7 @@ public class MainForm extends JFrame {
 
      private void LoadForm() {
         // Getting Icon
-        ImageIcon icon = new ImageIcon(ImageLoader.loadImage("icons/icon.png"));
+        ImageIcon icon = new ImageIcon(IconUtils.loadIcon("icons/icon.png"));
 
         // MainForm
         this.setName("MainForm");
@@ -64,8 +66,7 @@ public class MainForm extends JFrame {
         optionsButton.setText("Generator Options");
         optionsButton.addActionListener(e -> {
             formProperties = new Properties();
-            OptionsForm optionsForm = new OptionsForm(formProperties);
-            optionsForm.setVisible(true);
+            FormUtils.showForm(OptionsForm.class, formProperties);
         });
         this.add(optionsButton);
 
@@ -79,13 +80,15 @@ public class MainForm extends JFrame {
         this.add(copyButton);
 
         // GenerateButton
-        JButton generateButton = new JButton();
         generateButton.setName("GenerateButton");
+        generateButton.setEnabled(false);
         generateButton.setText("Generate Password");
         generateButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
         generateButton.addActionListener(e -> {
-            if (lengthField.getText().isEmpty() || lengthField.getText().equals("0")) {
+            if (GeneratorSettings.Setting.PASSWORD_LENGTH == 0) {
                 JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+            } else if (!GeneratorSettings.Setting.INCLUDE_SYMBOLS && !GeneratorSettings.Setting.INCLUDE_NUMBERS && !GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS && !GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS) {
+                JOptionPane.showMessageDialog(rootPane, "No options provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
             } else {
                 Generator.generatePassword(passwordField);
 

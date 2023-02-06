@@ -2,7 +2,7 @@ package com.hedreon.passwordgenerator.ui;
 
 // Imports
 import com.hedreon.passwordgenerator.lib.GeneratorSettings;
-import com.hedreon.passwordgenerator.lib.ImageLoader;
+import com.hedreon.passwordgenerator.util.IconUtils;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
@@ -36,19 +36,17 @@ import java.util.Properties;
 import java.io.IOException;
 
 public class OptionsForm extends JFrame {
-    public static JTextField lengthField = new JTextField();
     private final Properties formProperties;
 
     // Loader
-    public OptionsForm(Properties properties) {
-        lengthField = new JTextField();
-        formProperties = properties;
+    public OptionsForm(Properties formProperties) {
+        this.formProperties = formProperties;
         LoadForm();
     }
 
     // NumericalPasteAction
     public class NumericalPasteAction extends DefaultEditorKit.PasteAction {
-        public NumericalPasteAction() {
+        private NumericalPasteAction() {
             super();
             putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
             putValue(Action.NAME, "Paste Length");
@@ -99,7 +97,7 @@ public class OptionsForm extends JFrame {
 
     private void LoadForm() {
         // Getting Icon
-        ImageIcon icon = new ImageIcon(ImageLoader.loadImage("icons/options.png"));
+        ImageIcon icon = new ImageIcon(IconUtils.loadIcon("icons/options.png"));
 
         // OptionsForm
         this.setName("OptionsForm");
@@ -140,6 +138,7 @@ public class OptionsForm extends JFrame {
         popupMenu.add(selectAll);
 
         // LengthField
+        JTextField lengthField = new JTextField();
         lengthField.setName("LengthField");
         lengthField.setComponentPopupMenu(popupMenu);
         lengthField.addMouseListener(new MouseAdapter() {
@@ -208,19 +207,31 @@ public class OptionsForm extends JFrame {
         saveButton.setText("Save Changes");
         saveButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         saveButton.addActionListener(e -> {
-            GeneratorSettings.Setting.INCLUDE_SYMBOLS = symbolCheck.isSelected();
-            GeneratorSettings.Setting.INCLUDE_NUMBERS = numberCheck.isSelected();
-            GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS = lowercaseCheck.isSelected();
-            GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS = uppercaseCheck.isSelected();
-            GeneratorSettings.Setting.PASSWORD_LENGTH = Integer.parseInt(lengthField.getText());
+            if (lengthField.getText().isEmpty() || lengthField.getText().equals("0")) {
+                JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+            } else if (!symbolCheck.isSelected() && !numberCheck.isSelected() && !uppercaseCheck.isSelected() && !lowercaseCheck.isSelected()) {
+                GeneratorSettings.Setting.PASSWORD_LENGTH = Integer.parseInt(lengthField.getText());
+                formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH));
 
-            formProperties.setProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.Setting.INCLUDE_SYMBOLS));
-            formProperties.setProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_NUMBERS));
-            formProperties.setProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS));
-            formProperties.setProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS));
-            formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH));
+                JOptionPane.showMessageDialog(rootPane, "No options provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+            } else {
+                GeneratorSettings.Setting.INCLUDE_SYMBOLS = symbolCheck.isSelected();
+                GeneratorSettings.Setting.INCLUDE_NUMBERS = numberCheck.isSelected();
+                GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS = lowercaseCheck.isSelected();
+                GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS = uppercaseCheck.isSelected();
+                GeneratorSettings.Setting.PASSWORD_LENGTH = Integer.parseInt(lengthField.getText());
 
-            this.dispose();
+                formProperties.setProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.Setting.INCLUDE_SYMBOLS));
+                formProperties.setProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_NUMBERS));
+                formProperties.setProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS));
+                formProperties.setProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS));
+                formProperties.setProperty("PASSWORD_LENGTH", String.valueOf(GeneratorSettings.Setting.PASSWORD_LENGTH));
+
+                MainForm.generateButton.setEnabled(true);
+
+                this.dispose();
+            }
         });
         this.add(saveButton);
 

@@ -13,7 +13,7 @@ A clear and concise description of what the bug is.
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Click on '....'
-2. Scroll down to '....'
+2. Go to '....'
 3. See error
 
 **Expected behavior**
