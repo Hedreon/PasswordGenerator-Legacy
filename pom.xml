@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <version>1.4.1</version>
     <name>Password Generator</name>
-    <inceptionYear>2022-Present</inceptionYear>
+    <inceptionYear>2022</inceptionYear>
     <organization>
         <name>Hedreon</name>
         <url>https://github.com/Hedreon</url>
