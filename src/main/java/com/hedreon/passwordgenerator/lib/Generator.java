@@ -1,16 +1,14 @@
 package com.hedreon.passwordgenerator.lib;
 
 // Imports
-import javax.swing.JPasswordField;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Clipboard;
-import java.awt.Toolkit;
+import com.hedreon.passwordgenerator.util.ClipboardUtil;
+import javax.swing.text.JTextComponent;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Generator {
-    public static void generatePassword(JPasswordField output) {
+    public static void generatePassword(JTextComponent component) {
         List<Character> availableChars = new ArrayList<>();
 
         if (GeneratorSettings.Setting.INCLUDE_NUMBERS) {
@@ -45,16 +43,10 @@ public class Generator {
             password.append(c);
         }
 
-        output.setText(password.toString());
+        component.setText(password.toString());
     }
 
-    public static void copyPassword(JPasswordField output) {
-        char[] password = output.getPassword();
-        String passwordString = new String(password);
-
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection stringSelection = new StringSelection(passwordString);
-
-        clipboard.setContents(stringSelection, stringSelection);
+    public static void copyPassword(JTextComponent component) {
+        ClipboardUtil.setString(component.getText());
     }
 }

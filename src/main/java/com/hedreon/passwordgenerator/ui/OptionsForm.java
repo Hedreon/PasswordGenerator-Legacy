@@ -1,8 +1,10 @@
 package com.hedreon.passwordgenerator.ui;
 
 // Imports
+import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.hedreon.passwordgenerator.lib.GeneratorSettings;
-import com.hedreon.passwordgenerator.util.IconUtils;
+import com.hedreon.passwordgenerator.util.ClipboardUtil;
+import com.hedreon.passwordgenerator.util.IconUtil;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
@@ -41,12 +43,12 @@ public class OptionsForm extends JFrame {
     // Loader
     public OptionsForm(Properties formProperties) {
         this.formProperties = formProperties;
-        LoadForm();
+        loadForm();
     }
 
-    // NumericalPasteAction
-    public class NumericalPasteAction extends DefaultEditorKit.PasteAction {
-        private NumericalPasteAction() {
+    // pasteAction
+    public class pasteAction extends DefaultEditorKit.PasteAction {
+        private pasteAction() {
             super();
             putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
             putValue(Action.NAME, "Paste Length");
@@ -55,49 +57,179 @@ public class OptionsForm extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JTextComponent component = getFocusedComponent();
             String clipboardText = getClipboardText();
+            String numbers = getNumbers(clipboardText);
 
-            String onlyNumbers = getOnlyNumbers(clipboardText);
-
-            if (onlyNumbers.length() == 0) {
+            if (numbers.length() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers!", "Password Generator", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            component.setText(onlyNumbers);
+            component.setText(numbers);
         }
     }
 
-    // SelectAllText
-    private static class SelectAllText extends TextAction {
-        public SelectAllText() {
-            super("Select All");
-            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+//    // NumericalPasteAction
+//    public class NumericalPasteAction extends DefaultEditorKit.PasteAction {
+//        private NumericalPasteAction() {
+//            super();
+//            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
+//            putValue(Action.NAME, "Paste Length");
+//        }
+//
+//        public void actionPerformed(ActionEvent e) {
+//            JTextComponent component = getFocusedComponent();
+//            String clipboardText = getClipboardText();
+//
+//            String onlyNumbers = getOnlyNumbers(clipboardText);
+//
+//            if (onlyNumbers.length() == 0) {
+//                JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//
+//            component.setText(onlyNumbers);
+//        }
+//    }
+//
+//    // SelectAllText
+//    private static class SelectAllText extends TextAction {
+//        public SelectAllText() {
+//            super("Select All");
+//            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+//        }
+//
+//        public void actionPerformed(ActionEvent e) {
+//            JTextComponent component = getFocusedComponent();
+//            component.selectAll();
+//            component.requestFocusInWindow();
+//        }
+//    }
+//
+//    // Clear
+//    private static class Clear extends TextAction {
+//        public Clear() {
+//            super("Clear Length");
+//            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control BACK_SPACE"));
+//        }
+//
+//        public void actionPerformed(ActionEvent e) {
+//            JTextComponent component = getFocusedComponent();
+//            component.setText("");
+//            component.requestFocusInWindow();
+//        }
+//    }
+//
+//    // selectAllText
+//    private static class selectAllText extends TextAction {
+//        public selectAllText() {
+//            super("Select All");
+//            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+//        }
+//
+//        public void actionPerformed(ActionEvent e) {
+//            JTextComponent component = getFocusedComponent();
+//            component.selectAll();
+//            component.requestFocusInWindow();
+//        }
+//    }
+//
+//    // clear
+//    private static class clear extends TextAction {
+//        public clear() {
+//            super("Clear Length");
+//            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control BACK_SPACE"));
+//        }
+//
+//        public void actionPerformed(ActionEvent e) {
+//            JTextComponent component = getFocusedComponent();
+//            component.setText("");
+//            component.requestFocusInWindow();
+//        }
+//    }
+//
+//    // getClipboardText
+//    private static String getClipboardText() {
+//        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+//        Transferable contents = clipboard.getContents(null);
+//
+//        if (contents != null && contents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+//            try {
+//                return (String) contents.getTransferData(DataFlavor.stringFlavor);
+//            } catch (UnsupportedFlavorException | IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//
+//        return "";
+//    }
+//
+//    private static String getClipboardText() {
+//        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+//        Transferable contents = clipboard.getContents(null);
+//        if (contents != null && contents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+//            try {
+//                return (String) contents.getTransferData(DataFlavor.stringFlavor);
+//            } catch (UnsupportedFlavorException | IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//        return "";
+//    }
+//
+//    private static String getOnlyNumbers(String clipboardText) {
+//        StringBuilder sb = new StringBuilder();
+//        for (char c : clipboardText.toCharArray()) {
+//            if (Character.isDigit(c)) {
+//                sb.append(c);
+//            }
+//        }
+//        return sb.length() > 0 ? sb.toString() : "";
+//    }
+//
+//    private void pasteNumbers(JTextComponent component) {
+//        String clipboardText = getClipboardText();
+//        String onlyNumbers = getOnlyNumbers(clipboardText);
+//
+//        if (clipboardText.length() == 0 || onlyNumbers.length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        int number = Integer.parseInt(onlyNumbers);
+//        component.setText(String.valueOf(number));
+//    }
+
+    // getNumbers
+    private static String getNumbers(String clipboardText) {
+        StringBuilder builder = new StringBuilder();
+
+        for (char character : clipboardText.toCharArray()) {
+            if (Character.isDigit(character)) {
+                builder.append(character);
+            }
         }
 
-        public void actionPerformed(ActionEvent e) {
-            JTextComponent component = getFocusedComponent();
-            component.selectAll();
-            component.requestFocusInWindow();
-        }
+        return builder.length() > 0 ? builder.toString() : "";
     }
 
-    // Clear
-    private static class Clear extends TextAction {
-        public Clear() {
-            super("Clear Length");
-            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control BACK_SPACE"));
-        }
+//    // pasteNumbers
+//    private void pasteNumbers(JTextComponent component) {
+//        String clipboard = ClipboardUtil.getString();
+//        String numbers = getNumbers(clipboard);
+//
+//        if (clipboard.length() == 0 || numbers.length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers or had nothing!", "Password Generator", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        int number = Integer.parseInt(numbers);
+//        component.setText(String.valueOf(number));
+//    }
 
-        public void actionPerformed(ActionEvent e) {
-            JTextComponent component = getFocusedComponent();
-            component.setText("");
-            component.requestFocusInWindow();
-        }
-    }
-
-    private void LoadForm() {
+    // loadForm
+    private void loadForm() {
         // Getting Icon
-        ImageIcon icon = new ImageIcon(IconUtils.loadIcon("icons/options.png"));
+        ImageIcon icon = new ImageIcon(IconUtil.loadIcon("icons/options.png"));
 
         // OptionsForm
         this.setName("OptionsForm");
@@ -116,7 +248,7 @@ public class OptionsForm extends JFrame {
         JLabel lengthTitle = new JLabel();
         lengthTitle.setName("LengthTitle");
         lengthTitle.setText("Password Length:");
-        lengthTitle.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lengthTitle.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         this.add(lengthTitle);
 
         // PopupMenu
@@ -125,17 +257,14 @@ public class OptionsForm extends JFrame {
 
         // PasteLength
         JMenuItem pasteItem = new JMenuItem();
-        Action numericalPasteAction = new NumericalPasteAction();
-        pasteItem.setAction(numericalPasteAction);
+        pasteItem.setAction(new pasteAction());
         popupMenu.add(pasteItem);
 
         // ClearLength
-        Action clear = new Clear();
-        popupMenu.add(clear);
+        popupMenu.add(new clear());
 
         // SelectAll
-        Action selectAll = new SelectAllText();
-        popupMenu.add(selectAll);
+        popupMenu.add(new selectAllText());
 
         // LengthField
         JTextField lengthField = new JTextField();
@@ -173,7 +302,7 @@ public class OptionsForm extends JFrame {
         JCheckBox symbolCheck = new JCheckBox();
         symbolCheck.setName("SymbolCheck");
         symbolCheck.setText("Include Symbols");
-        symbolCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        symbolCheck.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         symbolCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_SYMBOLS", String.valueOf(GeneratorSettings.Setting.INCLUDE_SYMBOLS))));
         this.add(symbolCheck);
 
@@ -181,7 +310,7 @@ public class OptionsForm extends JFrame {
         JCheckBox numberCheck = new JCheckBox();
         numberCheck.setName("NumberCheck");
         numberCheck.setText("Include Numbers");
-        numberCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        numberCheck.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         numberCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_NUMBERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_NUMBERS))));
         this.add(numberCheck);
 
@@ -189,7 +318,7 @@ public class OptionsForm extends JFrame {
         JCheckBox lowercaseCheck = new JCheckBox();
         lowercaseCheck.setName("LowercaseCheck");
         lowercaseCheck.setText("lowercase");
-        lowercaseCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lowercaseCheck.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         lowercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_LOWERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_LOWERCASE_LETTERS))));
         this.add(lowercaseCheck);
 
@@ -197,7 +326,7 @@ public class OptionsForm extends JFrame {
         JCheckBox uppercaseCheck = new JCheckBox();
         uppercaseCheck.setName("UppercaseCheck");
         uppercaseCheck.setText("UPPERCASE");
-        uppercaseCheck.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        uppercaseCheck.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         uppercaseCheck.setSelected(Boolean.parseBoolean(formProperties.getProperty("INCLUDE_UPPERCASE_LETTERS", String.valueOf(GeneratorSettings.Setting.INCLUDE_UPPERCASE_LETTERS))));
         this.add(uppercaseCheck);
 
@@ -205,7 +334,7 @@ public class OptionsForm extends JFrame {
         JButton saveButton = new JButton();
         saveButton.setName("SaveButton");
         saveButton.setText("Save Changes");
-        saveButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        saveButton.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 14));
         saveButton.addActionListener(e -> {
             if (lengthField.getText().isEmpty() || lengthField.getText().equals("0")) {
                 JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
@@ -282,41 +411,5 @@ public class OptionsForm extends JFrame {
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         this.pack();
-    }
-
-    private static String getClipboardText() {
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Transferable contents = clipboard.getContents(null);
-        if (contents != null && contents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-            try {
-                return (String) contents.getTransferData(DataFlavor.stringFlavor);
-            } catch (UnsupportedFlavorException | IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return "";
-    }
-
-    private static String getOnlyNumbers(String clipboardText) {
-        StringBuilder sb = new StringBuilder();
-        for (char c : clipboardText.toCharArray()) {
-            if (Character.isDigit(c)) {
-                sb.append(c);
-            }
-        }
-        return sb.length() > 0 ? sb.toString() : "";
-    }
-
-    private void pasteNumbers(JTextComponent component) {
-        String clipboardText = getClipboardText();
-        String onlyNumbers = getOnlyNumbers(clipboardText);
-
-        if (clipboardText.length() == 0 || onlyNumbers.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "What you pasted did not include numbers!", "Password Generator", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int number = Integer.parseInt(onlyNumbers);
-        component.setText(String.valueOf(number));
     }
 }

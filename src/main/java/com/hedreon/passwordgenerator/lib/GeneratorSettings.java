@@ -26,6 +26,6 @@ public class GeneratorSettings {
         public static final String UPPER_CASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         // All the known symbols
-        public static final String SYMBOLS = "!@#$%^&*~:;'?<>";
+        public static final String SYMBOLS = "!@#$%^&*()<>/|?[]{}-=_+`~';:";
     }
 }

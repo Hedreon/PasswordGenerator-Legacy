@@ -1,10 +1,11 @@
 package com.hedreon.passwordgenerator.ui;
 
 // Imports
+import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.hedreon.passwordgenerator.lib.Generator;
 import com.hedreon.passwordgenerator.lib.GeneratorSettings;
-import com.hedreon.passwordgenerator.util.FormUtils;
-import com.hedreon.passwordgenerator.util.IconUtils;
+import com.hedreon.passwordgenerator.util.FormUtil;
+import com.hedreon.passwordgenerator.util.IconUtil;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,12 +26,12 @@ public class MainForm extends JFrame {
 
      // Loader
      public MainForm() {
-          LoadForm();
+          loadForm();
      }
 
-     private void LoadForm() {
+     private void loadForm() {
         // Getting Icon
-        ImageIcon icon = new ImageIcon(IconUtils.loadIcon("icons/icon.png"));
+        ImageIcon icon = new ImageIcon(IconUtil.loadIcon("icons/icon.png"));
 
         // MainForm
         this.setName("MainForm");
@@ -49,7 +50,7 @@ public class MainForm extends JFrame {
         passwordTitle.setName("PasswordTitle");
         passwordTitle.setHorizontalAlignment(SwingConstants.CENTER);
         passwordTitle.setText("Password");
-        passwordTitle.setFont(new Font("Segoe UI", Font.BOLD, 36));
+        passwordTitle.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 36));
         this.add(passwordTitle);
 
         // PasswordField
@@ -62,11 +63,11 @@ public class MainForm extends JFrame {
         // OptionsButton
         JButton optionsButton = new JButton();
         optionsButton.setName("OptionsButton");
-        optionsButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        optionsButton.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 16));
         optionsButton.setText("Generator Options");
         optionsButton.addActionListener(e -> {
             formProperties = new Properties();
-            FormUtils.showForm(OptionsForm.class, formProperties);
+            FormUtil.showForm(OptionsForm.class, formProperties);
         });
         this.add(optionsButton);
 
@@ -75,7 +76,7 @@ public class MainForm extends JFrame {
         copyButton.setName("CopyButton");
         copyButton.setEnabled(false);
         copyButton.setText("Copy Password");
-        copyButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        copyButton.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 16));
         copyButton.addActionListener(e -> Generator.copyPassword(passwordField));
         this.add(copyButton);
 
@@ -83,7 +84,7 @@ public class MainForm extends JFrame {
         generateButton.setName("GenerateButton");
         generateButton.setEnabled(false);
         generateButton.setText("Generate Password");
-        generateButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        generateButton.setFont(new Font(FlatInterFont.FAMILY, Font.BOLD, 16));
         generateButton.addActionListener(e -> {
             if (GeneratorSettings.Setting.PASSWORD_LENGTH == 0) {
                 JOptionPane.showMessageDialog(rootPane, "No length provided!", "Password Generator", JOptionPane.ERROR_MESSAGE);
