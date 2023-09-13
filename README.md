@@ -6,9 +6,9 @@ Password Generator is a simple application made in Java with Swing and Maven
 
 ![Preview](https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/preview/app.png)
 
-## Development Paused
+## Development Resumed Date
 
-The development of Password Generator will be paused until Halloween. The next version of Password Generator will *not* use Java. See the roadmap for Password Generator v1.5 [here.](https://github.com/users/Hedreon/projects/2)
+The development of Password Generator will resume next Friday on the 22nd of September.
 
 ## Features
 
