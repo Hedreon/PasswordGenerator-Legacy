@@ -2,7 +2,7 @@
 
 Password Generator is a simple application made in Java with Swing and Maven
 
-![Preview](https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/assets/preview.png)
+![Preview](https://raw.githubusercontent.com/Hedreon/PasswordGenerator-Legacy/main/assets/preview.png)
 
 ## Features
 
