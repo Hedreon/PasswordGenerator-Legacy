@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Application" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.hedreon.passwordgenerator.Main" />
-    <module name="PasswordGenerator" />
+    <option name="MAIN_CLASS_NAME" value="com.hedreon.generator.Main" />
+    <module name="generator" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

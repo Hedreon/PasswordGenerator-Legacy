@@ -1,14 +1,8 @@
 # Password Generator
 
-[![Codeberg Mirror](https://img.shields.io/badge/codeberg-404040.svg?style=for-the-badge&logo=codeberg)](https://codeberg.org/Hedreon/PasswordGenerator)
-
 Password Generator is a simple application made in Java with Swing and Maven
 
-![Preview](https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/src/main/resources/preview/app.png)
-
-## Development Resumed Date
-
-The development of Password Generator will resume next Friday on the 22nd of September.
+![Preview](https://raw.githubusercontent.com/Hedreon/PasswordGenerator/main/assets/preview.png)
 
 ## Features
 

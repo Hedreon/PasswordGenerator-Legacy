@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hedreon</groupId>
-    <artifactId>PasswordGenerator</artifactId>
+    <artifactId>generator</artifactId>
     <packaging>jar</packaging>
-    <version>1.4.1</version>
+    <version>1.5</version>
     <name>Password Generator</name>
     <inceptionYear>2022</inceptionYear>
     <organization>
@@ -28,6 +28,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>PasswordGenerator-v${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -39,6 +40,17 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>3.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default-jar</id>-->
+<!--                        <phase>none</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -48,9 +60,10 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <finalName>${project.build.finalName}</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.hedreon.passwordgenerator.Main</mainClass>
+                            <mainClass>com.hedreon.generator.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -70,19 +83,19 @@
                 <version>2.4.1</version>
                 <executions>
                     <execution>
-                        <id>build-exe</id>
+                        <id>launch4j</id>
                         <phase>package</phase>
                         <goals>
                             <goal>launch4j</goal>
                         </goals>
                         <configuration>
-                            <dontWrapJar>true</dontWrapJar>
                             <headerType>gui</headerType>
-                            <jar>../PasswordGenerator-${project.version}-jar-with-dependencies.jar</jar>
-                            <outfile>target/bin/PasswordGenerator-v${project.version}.exe</outfile>
+                            <jar>${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar</jar>
+                            <outfile>${project.build.directory}/${project.build.finalName}.exe</outfile>
                             <icon>src/main/resources/icons/icon.ico</icon>
+                            <errTitle>Password Generator</errTitle>
                             <jre>
-                                <path>C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot</path>
+                                <path>%JAVA_HOME%</path>
                                 <requires64Bit>false</requires64Bit>
                             </jre>
                         </configuration>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.hedreon.generator.Main">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="caa11" class="javax.swing.JLabel" binding="PasswordLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value="Password:"/>
+        </properties>
+      </component>
+      <component id="4934a" class="javax.swing.JPasswordField" binding="PasswordField">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="454dd" class="javax.swing.JLabel" binding="LengthLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value="Length:"/>
+        </properties>
+      </component>
+      <component id="4dc6c" class="javax.swing.JSpinner" binding="LengthSpinner">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+        </properties>
+      </component>
+      <component id="e7e4" class="javax.swing.JCheckBox" binding="UppercaseBox">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <horizontalTextPosition value="10"/>
+          <selected value="true"/>
+          <text value="Include UPPERCASE Letters:"/>
+        </properties>
+      </component>
+      <component id="98acc" class="javax.swing.JCheckBox" binding="LowercaseBox">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <horizontalTextPosition value="10"/>
+          <selected value="true"/>
+          <text value="Include lowercase Letters:"/>
+        </properties>
+      </component>
+      <component id="e600e" class="javax.swing.JCheckBox" binding="NumberBox">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <horizontalTextPosition value="10"/>
+          <selected value="true"/>
+          <text value="Include Numbers:"/>
+        </properties>
+      </component>
+      <component id="ad2ad" class="javax.swing.JCheckBox" binding="SymbolBox">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <font size="16"/>
+          <horizontalTextPosition value="10"/>
+          <selected value="false"/>
+          <text value="Include Symbols:"/>
+        </properties>
+      </component>
+      <component id="8e852" class="javax.swing.JButton" binding="GenerateButton">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16" style="1"/>
+          <text value="Generate Password"/>
+        </properties>
+      </component>
+      <component id="d5e12" class="javax.swing.JButton" binding="CopyButton">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <font size="16" style="1"/>
+          <text value="Copy Password"/>
+        </properties>
+      </component>
+      <component id="a52d8" class="javax.swing.JButton" binding="RevealButton">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Show"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
