@@ -2,13 +2,14 @@ package com.hedreon.generator.library;
 
 import com.hedreon.generator.library.utility.Clipboard;
 
-import javax.swing.text.JTextComponent;
+import org.eclipse.swt.widgets.Text;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Generator {
-    public static void generatePassword(JTextComponent component) {
+    public static void generatePassword(Text component) {
         if (Options.INCLUDE_NUMBERS || Options.INCLUDE_SYMBOLS || Options.INCLUDE_LOWERCASE || Options.INCLUDE_UPPERCASE) {
             List<Character> availableCharacters = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class Generator {
         }
     }
 
-    public static void copyPassword(JTextComponent component) {
+    public static void copyPassword(Text component) {
         Clipboard.clip(component.getText());
     }
 }
